@@ -7,10 +7,14 @@ class JSONWriter:
 
   def page(self, page, content):
     if page != None and page != "":
-      newcontent = copy.copy(content)
-      newcontent["url"] = page
+      entry = dict()
+      entry['url'] = page
+      entry['topic'] = content['topic'] if 'topic' in content else None
+      entry['title'] = content['d:Title'] if 'd:Title' in content else None
+      entry['description'] = content['d:Description'] if 'd:Description' in content else None
+      entry['priority'] = int(content['priority']) if 'priority' in content else None
 
-      self._file.write(json.dumps(newcontent) + "\n")
+      self._file.write(json.dumps(entry) + "\n")
     else:
       print "Skipping page %s, page attribute is missing" % page
 
