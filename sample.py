@@ -4,5 +4,5 @@ from parser import DmozParser
 from handlers import JSONWriter
 
 parser = DmozParser()
-parser.add_handler(JSONWriter('output.json'))
+parser.add_handler(JSONWriter('output.txt'))
 parser.run()
